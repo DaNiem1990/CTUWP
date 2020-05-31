@@ -22,9 +22,20 @@ namespace CTUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Login_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(typeof(Login));
+        }
+
+        private void Register_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(typeof(Register));
         }
     }
 }
