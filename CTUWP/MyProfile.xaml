@@ -9,9 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="460,410,0,0" Text="zalogowano" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="510,151,0,0" Text="zalogowano" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Name="errorBox" Margin="460,510,0,0" Text="" VerticalAlignment="Top" Height="90" Width="465"/>
         <TextBlock Name="ajdi" HorizontalAlignment="Left" Height="96" Margin="500,31,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="505"/>
+        <Button Content="Moja kolekcja" Name="mk"  HorizontalAlignment="Left" Margin="230,110,0,0" VerticalAlignment="Top" Click="Mk_Click"/>
 
 
     </Grid>

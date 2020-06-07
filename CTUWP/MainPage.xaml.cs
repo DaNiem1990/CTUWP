@@ -26,6 +26,7 @@ namespace CTUWP
         public MainPage()
         {
             this.InitializeComponent();
+
         }
 
         private void Login_Btn_Click(object sender, RoutedEventArgs e)
@@ -37,5 +38,12 @@ namespace CTUWP
         {
             frame.Navigate(typeof(Register));
         }
+
+        /*private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(typeof(Login));
+            // Frame.GoBack();
+        }*/
     }
 }
+

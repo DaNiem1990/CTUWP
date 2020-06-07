@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="CTUWP.CardGallery"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CTUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--<Image Name="img" HorizontalAlignment="Left" Height="100" Margin="190,150,0,0" VerticalAlignment="Top" Width="100" Source="{x:Bind imageItem}"/>-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="DefaultState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MasterColumn.Width" Value="*" />
+                        <Setter Target="DetailColumn.Width" Value="0" />
+                        <Setter Target="MasterListView.SelectionMode" Value="None" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="320" />
+            <ColumnDefinition x:Name="DetailColumn" Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="MasterListView" Grid.Column="0" ItemContainerTransitions="{x:Null}"
+        IsItemClickEnabled="True" ItemClick="MasterListView_ItemClick" ItemsSource="{x:Bind itemcollection}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:CardItem">
+                    <Grid>
+                        <StackPanel>
+
+                        <Image Grid.Column="0" Margin="0,10,0,10" MaxHeight="144"  HorizontalAlignment="Left" Source="{x:Bind ImageItem}" />
+
+                        <TextBlock Grid.Column="1" Margin="50,0,0,0"  Text="{x:Bind name}" TextAlignment="Right" TextWrapping="Wrap"/>
+                        </StackPanel>    
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ContentPresenter x:Name="DetailContentPresenter" Grid.Column="1" BorderThickness="1,0,0,0"
+        Padding="24,0" BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
+        Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate x:DataType="local:CardItem">
+                    <Image Source="{x:Bind ImageItem}" />
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>
+    </Grid>
+</Page>

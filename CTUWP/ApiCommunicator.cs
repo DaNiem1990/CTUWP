@@ -14,7 +14,7 @@ namespace CTUWP
     {
         ApiAddress apiConfig;
         string requestUri;
-        string responseKey = "success";
+        string responseKey = "data";
         HttpClient httpClient = new HttpClient();
         HttpResponseMessage response;
 
@@ -41,10 +41,10 @@ namespace CTUWP
             return returnDataIfSuccess(responseString);
         }
         
-       private HttpMultipartFormDataContent prepareData()
-       {
+        private HttpMultipartFormDataContent prepareData()
+        {
             return UserData.getPayLoad();
-       }
+        }
 
         public async Task<string> postData(HttpMultipartFormDataContent payLoad)
         {
@@ -60,6 +60,16 @@ namespace CTUWP
             return responString;
         }
 
+        public async Task<JsonArray> getArray()
+        {
+            response = await httpClient.GetAsync(new Uri(requestUri));
+            string responString = await response.Content.ReadAsStringAsync();
+            var responseString = JsonObject.Parse(responString).GetNamedValue("data").GetArray();//await response.Content.ReadAsStringAsync();
+            //
+            return responseString;
+            //return new JsonArray();
+        } 
+
         public JsonObject returnDataIfSuccess(string responseString)
         {
             JsonObject dataArray = new JsonObject();
@@ -73,7 +83,7 @@ namespace CTUWP
                            user.GetNamedValue(responseKey).ToString()
                        );
 
-                    UserData.setToken(getTokenFromJson(dataArray));
+                    
                 }
                 catch
                 {
@@ -97,7 +107,7 @@ namespace CTUWP
             string token = UserData.getToken();
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer "+ token);
         }
-        private string getTokenFromJson(JsonObject jResponse)
+        public string getTokenFromJson(JsonObject jResponse)
         {
             string token = "";
             try
@@ -110,6 +120,11 @@ namespace CTUWP
             }
             return token;
         }
+
+       /* public async Task<string> getCategory()
+        {
+            return catUri;
+        }*/
 
     }
 }

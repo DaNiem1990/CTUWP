@@ -32,6 +32,7 @@ namespace CTUWP
         public Register()
         {
             this.InitializeComponent();
+            App.hideBackButton();
         }              
 
         private async void Button_Click(object sender, RoutedEventArgs args)
@@ -39,8 +40,10 @@ namespace CTUWP
             prepareApiRequestData(sender);
 
             ApiAddress apiConfig = prepareApiRequestConfig();
-            isPasswordSame(UserData.getField("password"), UserData.getField("c_password"), eBox);
             Message.show("Trwa rejestrowanie proszę czekać", eBox);
+
+            
+            
 
             await HttpUserPost(apiConfig, eBox);
         }
@@ -57,23 +60,45 @@ namespace CTUWP
             return apiConfig;
         }
 
-        private void isPasswordSame(string password, string cPassword, TextBlock errorBox)
+        private bool isPasswordSame(string password, string cPassword)
         {
-            try 
+            try
             {
-                password.Equals(cPassword);
+                if (password.Equals(cPassword))
+                {
+                    return true;
+                }
             }
             catch
             {
-                Message.show("Podane hasła nie są takie same", errorBox);
+                
             }
+            throw new Exception("Podane hasła nie są takie same");
+            
+        }
 
+        private bool checkPassword(string password, string cPassword)
+        {
+            try
+            {
+                if(password.Length > 7)
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+
+            }
+            throw new Exception("Hasło musi składać się conajmniej z siedmiu znaków");
         }
 
         public async Task HttpUserPost(ApiAddress apiConfig, TextBlock errorBox)
         {
             try
             {
+                bool isPasswordsCorrect = isPasswordSame(UserData.getField("password"), UserData.getField("c_password"));
+                bool isPasswordsLong = checkPassword(UserData.getField("password"), UserData.getField("c_password"));
                 ApiCommunicator apiConnector = new ApiCommunicator(apiConfig);
                 await apiConnector.post();
                 goToMyProfile();

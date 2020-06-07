@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,7 +30,10 @@ namespace CTUWP
             
             this.InitializeComponent();
             getUserData();
+
+            App.hideBackButton();
         }
+
 
         public async void getUserData()
         {
@@ -39,6 +43,11 @@ namespace CTUWP
             UserData.setUserDetails(resp);
             Message.show(UserData.getBasicData() +"\n" + "Id: " + UserData.getId(), errorBox);
 
+        }
+
+        private void Mk_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(selectPerson));
         }
     }
 }

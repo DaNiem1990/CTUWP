@@ -10,6 +10,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
 using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,6 +34,7 @@ namespace CTUWP
         public Login()
         {
             this.InitializeComponent();
+            App.hideBackButton();
         }
 
         private void Grid_login_enter(object sender, KeyRoutedEventArgs args)
@@ -78,7 +80,8 @@ namespace CTUWP
             try
             {
                 ApiCommunicator apiConnector = new ApiCommunicator(apiConfig);
-                await apiConnector.post();
+                JsonObject datas =  await apiConnector.post();
+                UserData.setToken(apiConnector.getTokenFromJson(datas));
                 goToMyProfile();
             }
             catch (Exception ex)

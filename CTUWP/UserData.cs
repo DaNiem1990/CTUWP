@@ -156,8 +156,8 @@ namespace CTUWP
 
         public static string getBasicData()
         {
-            return "email: " + payLoadFields["email"]
-                + "\n" + "name: " + payLoadFields["name"];
+            return "email: " + payLoadFields["name"]
+            +"\n" + "name: " + payLoadFields["email"];
         }
     }
 }
