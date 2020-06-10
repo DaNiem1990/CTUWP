@@ -9,15 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Width="auto" Height="auto">
-        <CommandBar HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top">
-            <CommandBar.Content>
+        <CommandBar HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" IsOpen="True">
+            <CommandBar.Content >
+                
                 <Grid/>
             </CommandBar.Content>
 
             
             <AppBarButton x:Name="Login_Btn"  Icon="Contact2" Click="Login_Btn_Click" Label="Zaloguj się" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             <AppBarButton x:Name="Register_Btn"  Icon="Contact2" Click="Register_Btn_Click" Label="Zarejestruj się" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom"/>
-            
         </CommandBar>
         <Frame x:Name="frame" Margin="10,40,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Frame.Background>

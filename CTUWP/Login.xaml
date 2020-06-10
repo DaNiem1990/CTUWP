@@ -34,8 +34,8 @@
           Width="200"
           Margin="0,100,0,0"/>
         <Button Content="Zaloguj się" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="110" FontSize="18" Name="buttonZaloguj" Click="Button_Click" />
-        <TextBlock Name="eBox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Height="96" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="505"/>
-        
+        <TextBlock Name="eBox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="96" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Margin="50,69,0,0"/>
+
 
     </Grid>
 </Page>

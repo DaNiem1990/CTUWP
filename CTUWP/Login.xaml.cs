@@ -57,7 +57,7 @@ namespace CTUWP
             await HttpUserPost(apiConfig, eBox);
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs args)
+        private void Button_Click(object sender, RoutedEventArgs args)
         {
             doLogin(sender, args);
         }

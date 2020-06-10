@@ -33,6 +33,7 @@ namespace CTUWP
         {
             this.InitializeComponent();
             App.hideBackButton();
+            UserData.setToken("");
         }              
 
         private async void Button_Click(object sender, RoutedEventArgs args)

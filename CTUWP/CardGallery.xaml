@@ -56,7 +56,7 @@
                             <TextBlock Margin="10,10,0,0" Text="{x:Bind name}" TextAlignment="Right" MaxWidth="150" TextWrapping="Wrap"/>
                             <TextBlock Margin="10,100,0,0" Text="Posiadana ilość: " TextAlignment="Right" MaxWidth="150" TextWrapping="Wrap"/>
                             <TextBlock x:Name="quantityTB" Margin="10,100,0,0" Text="{x:Bind quantity}" TextAlignment="Right" MaxWidth="150" TextWrapping="Wrap"/>
-                            <Button Tag="{x:Bind id}" Margin="0,50,0,0" Content="Dodaj do kolekcji" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="AddImage_Click"/>
+                            <Button Tag="{x:Bind id}" Margin="0,50,50,0" Content="Dodaj do kolekcji" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="AddImage_Click"/>
                             <Button Tag="{x:Bind id}"  Content="Usuń z kolekcji" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RemoveImage_Click"/>
                         </StackPanel> 
                     </Grid>

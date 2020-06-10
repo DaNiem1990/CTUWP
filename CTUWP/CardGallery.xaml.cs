@@ -64,19 +64,29 @@ namespace CTUWP
             //accountInfo.GetObject().GetNamedObject("cards").GetObject();}
 
             Dictionary<string, double> cardsInMyPocket = new Dictionary<string, double>();
-
-            foreach(string key in accountInfo.GetObject().GetNamedObject("cards").Keys)
+            try
             {
-                cardsInMyPocket.Add(key, accountInfo.GetObject().GetNamedObject("cards").GetNamedObject(key).GetNamedNumber("qty"));
+                var myCardsKeys = accountInfo.GetObject().GetNamedObject("cards").Keys;
+
+                if (myCardsKeys.Count > 0)
+                {
+                    foreach (string key in accountInfo.GetObject().GetNamedObject("cards").Keys)
+                    {
+                        cardsInMyPocket.Add(key, accountInfo.GetObject().GetNamedObject("cards").GetNamedObject(key).GetNamedNumber("qty"));
+                    }
+                }
             }
-                        
+            catch
+            {
+
+            }
             int pos = 0;
             foreach (var catString in catsReturned) {
                 JsonObject cat = catString.GetObject();
 
                 var cardsList = cardsReturned.Where(x => x.GetObject().GetNamedObject("subcategory").GetNamedNumber("id") == cat.GetNamedNumber("id"));
-                addImageToCollection( cat.GetNamedString("name"));
-                pos++;
+                //addImageToCollection( cat.GetNamedString("name"));
+                //pos++;
                 //addImageToCard("http://ct.zobacztu.pl/images/arrow_right.jpg", )
 
                 foreach (var cardString in cardsList)

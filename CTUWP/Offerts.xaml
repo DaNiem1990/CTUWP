@@ -20,6 +20,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Text="Dodaj ogłoszenie" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Wybierz kartę na wymianę:"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Wybierz kartę, którą byś chciał otrzymać:"/>
+        <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Dodaj ogłoszenie"/>
 
     </Grid>
 </Page>
