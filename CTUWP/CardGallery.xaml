@@ -14,7 +14,7 @@
             <VisualStateGroup x:Name="AdaptiveStates">
                 <VisualState x:Name="DefaultState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
+                        <AdaptiveTrigger MinWindowWidth="420" />
                     </VisualState.StateTriggers>
                 </VisualState>
 
@@ -24,20 +24,21 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="MasterColumn.Width" Value="*" />
-                        <Setter Target="DetailColumn.Width" Value="0" />
+                        <Setter Target="MasterRow.Height" Value="*" />
+                        <Setter Target="DetailRow.Height" Value="0" />
                         <Setter Target="MasterListView.SelectionMode" Value="None" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn" Width="320" />
-            <ColumnDefinition x:Name="DetailColumn" Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="MasterRow" Height="*" />
+            
+            <RowDefinition x:Name="DetailRow" Height="0" />
+        </Grid.RowDefinitions>
 
-        <ListView x:Name="MasterListView" Grid.Column="0" ItemContainerTransitions="{x:Null}"
+        <ListView x:Name="MasterListView" Grid.Row="0" ItemContainerTransitions="{x:Null}"
         IsItemClickEnabled="True" ItemClick="MasterListView_ItemClick" ItemsSource="{x:Bind itemcollection}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -46,19 +47,24 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:CardItem">
-                    <Grid>
-                        <StackPanel>
+                    <Grid HorizontalAlignment="Stretch">
 
-                        <Image Grid.Column="0" Margin="0,10,0,10" MaxHeight="144"  HorizontalAlignment="Left" Source="{x:Bind ImageItem}" />
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
 
-                        <TextBlock Grid.Column="1" Margin="50,0,0,0"  Text="{x:Bind name}" TextAlignment="Right" TextWrapping="Wrap"/>
-                        </StackPanel>    
+                            <Image Margin="0,10,0,10" MaxWidth="80" MaxHeight="144" HorizontalAlignment="Left" Source="{x:Bind ImageItem}" />
+
+                            <TextBlock Margin="10,10,0,0" Text="{x:Bind name}" TextAlignment="Right" MaxWidth="150" TextWrapping="Wrap"/>
+                            <TextBlock Margin="10,100,0,0" Text="Posiadana ilość: " TextAlignment="Right" MaxWidth="150" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="quantityTB" Margin="10,100,0,0" Text="{x:Bind quantity}" TextAlignment="Right" MaxWidth="150" TextWrapping="Wrap"/>
+                            <Button Tag="{x:Bind id}" Margin="0,50,0,0" Content="Dodaj do kolekcji" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="AddImage_Click"/>
+                            <Button Tag="{x:Bind id}"  Content="Usuń z kolekcji" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RemoveImage_Click"/>
+                        </StackPanel> 
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <ContentPresenter x:Name="DetailContentPresenter" Grid.Column="1" BorderThickness="1,0,0,0"
+        <ContentPresenter x:Name="DetailContentPresenter" Grid.Row="1" BorderThickness="1,0,0,0"
         Padding="24,0" BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
         Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
             <ContentPresenter.ContentTemplate>

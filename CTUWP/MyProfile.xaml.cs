@@ -49,5 +49,10 @@ namespace CTUWP
         {
             Frame.Navigate(typeof(selectPerson));
         }
+
+        private void Do_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Offerts));
+        }
     }
 }

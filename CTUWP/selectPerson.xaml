@@ -10,7 +10,7 @@
 
     <Grid Name="buttonsPlajce" VerticalAlignment="Top">
         <ScrollViewer>
-            <StackPanel x:Name="buttonsPlace" Orientation="Vertical">
+            <StackPanel x:Name="buttonsPlace" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
             </StackPanel>
         </ScrollViewer>
     </Grid>

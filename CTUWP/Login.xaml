@@ -9,12 +9,33 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid KeyUp="Grid_login_enter">
-        <TextBlock HorizontalAlignment="Left" Margin="305,150,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="71" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="305,200,0,0" Text="Hasło" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="71" FontSize="24"/>
-        <TextBox Name="loginField" HorizontalAlignment="Left" Margin="455,150,0,0" Text="" VerticalAlignment="Top" RenderTransformOrigin="-0.642,0.625" Width="200" AcceptsReturn="True"/>
-        <PasswordBox Name="passwordField" HorizontalAlignment="Left" Margin="455,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.156,-0.188" Width="200"/>
-        <Button Content="Zaloguj się" HorizontalAlignment="Left" Height="40" Margin="750,265,0,0" VerticalAlignment="Top" Width="110" FontSize="18" RenderTransformOrigin="0.5,0.469" Name="buttonZaloguj" Click="Button_Click"/>
-        <TextBlock Name="eBox" HorizontalAlignment="Left" Height="96" Margin="500,31,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="505"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" HorizontalAlignment="center"  Text="Email" TextWrapping="Wrap" VerticalAlignment="center" Height="33" Width="71" FontSize="24"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="center"  Text="Hasło" Margin="0,100,0,0"
+          TextWrapping="Wrap" VerticalAlignment="center" Height="33" Width="71" FontSize="24"/>
+
+
+
+        <TextBox Grid.Column="1" Grid.Row="0" 
+          Grid.ColumnSpan="2"
+          Grid.RowSpan="2"
+          Name="loginField" HorizontalAlignment="Left"  Text="" VerticalAlignment="center" RenderTransformOrigin="-0.642,0.625" Width="200" AcceptsReturn="True"/>
+        <PasswordBox Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="2" Grid.RowSpan="2" Name="passwordField" HorizontalAlignment="Left" VerticalAlignment="Center"  
+          Width="200"
+          Margin="0,100,0,0"/>
+        <Button Content="Zaloguj się" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="110" FontSize="18" Name="buttonZaloguj" Click="Button_Click" />
+        <TextBlock Name="eBox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Height="96" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="505"/>
+        
 
     </Grid>
 </Page>

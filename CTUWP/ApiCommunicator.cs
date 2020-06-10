@@ -40,7 +40,16 @@ namespace CTUWP
             string responseString = await getData();
             return returnDataIfSuccess(responseString);
         }
-        
+
+        public async Task<JsonObject> put()
+        {
+            setAuthHeader();
+            HttpMultipartFormDataContent payLoad = prepareData();
+            string responseString = await putData(payLoad);
+            JsonObject uData = returnDataIfSuccess(responseString);
+            return uData;
+        }
+
         private HttpMultipartFormDataContent prepareData()
         {
             return UserData.getPayLoad();
@@ -49,6 +58,13 @@ namespace CTUWP
         public async Task<string> postData(HttpMultipartFormDataContent payLoad)
         {
             response = await httpClient.PostAsync(new Uri(requestUri), payLoad);
+            string responString = await response.Content.ReadAsStringAsync();
+            return responString;
+        }
+
+        public async Task<string> putData(HttpMultipartFormDataContent payLoad)
+        {
+            response = await httpClient.PutAsync(new Uri(requestUri), payLoad);
             string responString = await response.Content.ReadAsStringAsync();
             return responString;
         }
@@ -62,6 +78,7 @@ namespace CTUWP
 
         public async Task<JsonArray> getArray()
         {
+            //setAuthHeader();
             response = await httpClient.GetAsync(new Uri(requestUri));
             string responString = await response.Content.ReadAsStringAsync();
             var responseString = JsonObject.Parse(responString).GetNamedValue("data").GetArray();//await response.Content.ReadAsStringAsync();
@@ -105,6 +122,7 @@ namespace CTUWP
         private void setAuthHeader()
         {
             string token = UserData.getToken();
+
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer "+ token);
         }
         public string getTokenFromJson(JsonObject jResponse)
